@@ -1,8 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CourseListService } from './courselist.service';
 import { Course } from './course';
-import { Subject } from 'rxjs';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-courselist',
@@ -54,7 +52,7 @@ export class CourseListComponent implements OnInit {
 
   saveCourse() {
     if (this.isEditMode) {
-      var course = this.courses.filter(c => c.id == this.selectedCourse.id);
+      let course = this.courses.filter(c => c.id == this.selectedCourse.id);
 
       if (course.length == 1) {
         course[0].title = this.selectedCourse.title;
@@ -63,14 +61,10 @@ export class CourseListComponent implements OnInit {
         course[0].description = this.selectedCourse.description;
 
       }
-      // this.courseListService.updateCourse(this.selectedCourse)
-      //   .subscribe(course => {
-
-      //   });
     } else {
       this.courseListService.addCourse(this.selectedCourse)
         .subscribe(course => {
-          this.courses.push(course);
+          this.getCourses();
 
         });
     }

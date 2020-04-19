@@ -29,7 +29,6 @@ export class CourseListService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
   getCourse(id: number): Observable<Course> {
     const url = `${this.coursesUrl}/${id}`;
     return this.http.get<Course>(url).pipe(
@@ -44,9 +43,6 @@ export class CourseListService {
     );
   }
 
-  // //////// Save methods //////////
-
-  /** DELETE: delete the hero from the server */
   deleteCourse(course: Course | number): Observable<Course> {
     const id = typeof course === 'number' ? course : course.id;
     const url = `${this.coursesUrl}/${id}`;
@@ -57,20 +53,6 @@ export class CourseListService {
     );
   }
 
-  /** PUT: update the hero on the server */
-  // updateCourse(course: Course): Observable<any> {
-  //   return this.http.put(this.coursesUrl, course, this.httpOptions).pipe(
-  //     tap(_ => this.log(`updated course id=${course.id}`)),
-  //     catchError(this.handleError<any>('updateCourse'))
-  //   );
-  // }
-
-  // /**
-  //  * Handle Http operation that failed.
-  //  * Let the app continue.
-  //  * @param operation - name of the operation that failed
-  //  * @param result - optional value to return as the observable result
-  //  */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
