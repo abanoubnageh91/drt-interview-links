@@ -14,6 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseListComponent } from './courselist/courselist.component';
 import { FormsModule } from '@angular/forms';
+import { SearchCourseComponent } from './courselist/searchcourse/searchcourse.component';
+import { AddEditCourseComponent } from './courselist/addeditcourse/addeditcourse.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     WelcomeComponent,
     AboutComponent,
-    CourseListComponent
+    CourseListComponent,
+    SearchCourseComponent,
+    AddEditCourseComponent
   ],
   imports: [
     BrowserModule,

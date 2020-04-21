@@ -40,6 +40,7 @@ export class CourseListComponent implements OnInit {
   }
 
   addCourse() {
+    this.isEditMode = false;
     this.selectedCourse = new Course();
     this.selectedCourse.id = Math.max.apply(Math, this.courses.map(c => { return c.id; })) + 1;
   }
@@ -50,20 +51,20 @@ export class CourseListComponent implements OnInit {
       .subscribe(course => this.selectedCourse = course);
   }
 
-  saveCourse() {
+  saveCourse(course: Course) {
     if (this.isEditMode) {
-      let course = this.courses.filter(c => c.id == this.selectedCourse.id);
+      let updatedCourse = this.courses.filter(c => c.id == course.id);
 
-      if (course.length == 1) {
-        course[0].title = this.selectedCourse.title;
-        course[0].duration = this.selectedCourse.duration;
-        course[0].durationUnit = this.selectedCourse.durationUnit;
-        course[0].description = this.selectedCourse.description;
+      if (updatedCourse.length == 1) {
+        updatedCourse[0].title = course.title;
+        updatedCourse[0].duration = course.duration;
+        updatedCourse[0].durationUnit = course.durationUnit;
+        updatedCourse[0].description = course.description;
 
       }
     } else {
-      this.courseListService.addCourse(this.selectedCourse)
-        .subscribe(course => {
+      this.courseListService.addCourse(course)
+        .subscribe(c => {
           this.getCourses();
 
         });
