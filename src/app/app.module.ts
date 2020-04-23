@@ -12,10 +12,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutComponent } from './about/about.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CourseListComponent } from './courselist/courselist.component';
+import { CourseListComponent } from './courselist/course-list.component';
 import { FormsModule } from '@angular/forms';
-import { SearchCourseComponent } from './courselist/searchcourse/searchcourse.component';
-import { AddEditCourseComponent } from './courselist/addeditcourse/addeditcourse.component';
+import { SearchCourseComponent } from './courselist/searchcourse/search-course.component';
+import { AddEditCourseComponent } from './courselist/addeditcourse/add-edit-course.component';
 
 @NgModule({
   declarations: [

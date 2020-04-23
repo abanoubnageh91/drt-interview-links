@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { CourseListService } from './courselist.service';
-import { Course } from './course';
+import { CourseListService } from './course-list.service';
+import { Course } from './course.model';
 
 @Component({
-  selector: 'app-courselist',
-  templateUrl: './courselist.component.html',
-  styleUrls: ['./courselist.component.css']
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.css']
 })
 
 export class CourseListComponent implements OnInit {

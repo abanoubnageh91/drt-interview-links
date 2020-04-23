@@ -1,6 +1,6 @@
 <div class="container">
 
-    <search-course (searchText)="search($event)"></search-course>
+    <app-search-course (searchText)="search($event)"></app-search-course>
 
     <div class="row">
         <div class="col-md-11">
@@ -37,4 +37,4 @@
     </table>
 </div>
 
-<add-edit-course [selectedCourse]="selectedCourse" [isEditMode]="isEditMode" (saveCourseEmit)="saveCourse($event)"></add-edit-course>
+<app-add-edit-course [selectedCourse]="selectedCourse" [isEditMode]="isEditMode" (saveCourseEmit)="saveCourse($event)"></app-add-edit-course>

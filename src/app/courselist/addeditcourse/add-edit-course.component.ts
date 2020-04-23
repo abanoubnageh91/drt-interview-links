@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Course } from '../course';
+import { Course } from '../course.model';
 
 @Component({
-    selector: 'add-edit-course',
-    templateUrl: './addeditcourse.component.html'
+    selector: 'app-add-edit-course',
+    templateUrl: './add-edit-course.component.html'
 })
 
 export class AddEditCourseComponent implements OnInit {
