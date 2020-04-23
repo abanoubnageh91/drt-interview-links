@@ -13,7 +13,7 @@ import { AboutComponent } from './about/about.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseListComponent } from './courselist/course-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchCourseComponent } from './courselist/searchcourse/search-course.component';
 import { AddEditCourseComponent } from './courselist/addeditcourse/add-edit-course.component';
 
@@ -31,7 +31,7 @@ import { AddEditCourseComponent } from './courselist/addeditcourse/add-edit-cour
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
+    ReactiveFormsModule,
     AlertModule,
     HttpClientModule
   ],

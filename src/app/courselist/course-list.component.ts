@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CourseListService } from './course-list.service';
 import { Course } from './course.model';
+import { AddEditCourseComponent } from './addeditcourse/add-edit-course.component';
 
 @Component({
   selector: 'app-course-list',
@@ -13,6 +14,8 @@ export class CourseListComponent implements OnInit {
   courses: Course[];
   isEditMode: boolean = false;
   selectedCourse: Course;
+  @ViewChild(AddEditCourseComponent)
+  addEditCourse: AddEditCourseComponent;
   constructor(private courseListService: CourseListService) { }
 
   ngOnInit(): void {
@@ -40,12 +43,20 @@ export class CourseListComponent implements OnInit {
   }
 
   addCourse() {
+    this.addEditCourse.resetForm();
     this.isEditMode = false;
-    this.selectedCourse = new Course();
-    this.selectedCourse.id = Math.max.apply(Math, this.courses.map(c => { return c.id; })) + 1;
+    this.selectedCourse = {
+      id: Math.max.apply(Math, this.courses.map(c => { return c.id; })) + 1,
+      title: "",
+      duration: 0,
+      durationUnit: "",
+      description: ""
+    };
+
   }
 
   editCourse(id: number) {
+    this.addEditCourse.resetForm();
     this.isEditMode = true;
     this.courseListService.getCourse(id)
       .subscribe(course => this.selectedCourse = course);

@@ -3,36 +3,54 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{isEditMode?'Edit':'New'}} Course</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">ID:</label>
-                    <input type="text" [(ngModel)]="selectedCourse.id" [disabled]="true" class="form-control" id="id">
+            <form [formGroup]="addEditForm" (ngSubmit)="saveCourse()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [(ngModel)]="selectedCourse.id">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Title:</label>
+                        <input type="text" [(ngModel)]="selectedCourse.title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" class="form-control">
+                        <div *ngIf="submitted && f.title.invalid" class="invalid-feedback">
+                            <div *ngIf="f.title.errors.required">Title is required</div>
+                            <div *ngIf="f.title.errors.minlength">Title must be at least 3 characters</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Duration:</label>
+                        <input type="text" [(ngModel)]="selectedCourse.duration" formControlName="duration" [ngClass]="{ 'is-invalid': submitted && f.duration.errors }" class="form-control">
+                        <div *ngIf="submitted && f.duration.invalid" class="invalid-feedback">
+                            <div *ngIf="f.duration.errors.required">Duration is required</div>
+                            <div *ngIf="f.duration.errors?.pattern">
+                                Duration must be number.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Duration Unit:</label>
+                        <input type="text" [(ngModel)]="selectedCourse.durationUnit" formControlName="durationUnit" [ngClass]="{ 'is-invalid': submitted && f.durationUnit.errors }" class="form-control">
+                        <div *ngIf="submitted && f.durationUnit.invalid" class="invalid-feedback">
+                            <div *ngIf="f.durationUnit.errors.required">Duration Unit is required</div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" [(ngModel)]="selectedCourse.description" formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" class="form-control"></textarea>
+                        <div *ngIf="submitted && f.description.invalid" class="invalid-feedback">
+                            <div *ngIf="f.description.errors.required">Description Unit is required</div>
+                            <div *ngIf="f.description.errors.maxlength">Description must not exceeds 1000 characters</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Title:</label>
-                    <input type="text" [(ngModel)]="selectedCourse.title" class="form-control" id="title">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Duration:</label>
-                    <input type="text" [(ngModel)]="selectedCourse.duration" class="form-control" id="duration">
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Duration Unit:</label>
-                    <input type="text" [(ngModel)]="selectedCourse.durationUnit" class="form-control" id="durationUnit">
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Description:</label>
-                    <textarea class="form-control" [(ngModel)]="selectedCourse.description" id="description"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveCourse()">Save</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
